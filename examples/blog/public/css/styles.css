@@ -113,6 +113,7 @@ input[type="text"] {
   width: 98%;
   height: 30px;
   border: none;
+  font-size: 16px;
   border-bottom: 2px solid #eee;
 }
 
@@ -126,30 +127,34 @@ input[type="password"] {
 
 input[type="text"]:focus,input[type="password"]:focus{
 outline: none;
-border-bottom:2px solid #28aadc;
+border-bottom:2px solid #768A9A;
 transition:0.9s ease;
 }
 
 input[type="submit"] {
   width: 100px;
   height: 40px;
-  background-color: #28aadc;
+  background-color: #fff;
   cursor: pointer;
-  color: white;
+  color: #000;
   font-family: 'Poppins';
   display: block;
   margin: auto;
   text-align: center;
   border-radius: 10px;
+  margin-top: 5px;
+  float: right;
+  border:2px solid #768A9A;
 }
 
 input[type="submit"]:hover{
-  color: #eee;
+  border:2px solid #768A9A;
+  color: #768A9A;
 }
 
 .error{
-  color: red;
-  font-weight: 200;
+  color: blue;
+  font-weight: 500;
   font-size: 12px;
 }
 
@@ -159,7 +164,8 @@ textarea#styled {
     border: 3px solid #cccccc;
     padding: 5px;
     font-family: Tahoma, sans-serif;
-    background-image: url(bg.gif);
-    background-position: bottom right;
-    background-repeat: no-repeat;
 }    
+
+textarea{
+  margin-bottom: 20px;
+}
