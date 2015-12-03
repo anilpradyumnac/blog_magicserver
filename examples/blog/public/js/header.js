@@ -1,5 +1,4 @@
-
- var Header =  React.createClass({
+var Header =  React.createClass({
  	render:function(){
  		return(
  			<header>
@@ -13,3 +12,4 @@
  		)
  	}
  })
+
