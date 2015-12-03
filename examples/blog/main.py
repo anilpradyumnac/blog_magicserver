@@ -9,26 +9,17 @@ redis_server = redis.Redis('localhost')
 
 # Temporary HTML Generator functions
 def html_header():
-    html = '''\
-<html>
-<head>
-<title>Geekskool Blog</title>
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Playfair+Display:300,400,700' rel='stylesheet' type='text/css'>   
-<link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
-<body>
-      
-'''
-    return html
+    header_html = ''
+    with open('./views/header.html', 'r') as fd:
+        header_html = fd.read()
+    return header_html
 
 
 def html_tail():
-    html = '''\
-</body>
-</html>
-'''
-    return html
+    footer_html = ''
+    with open('./views/footer.html', 'r') as fd:
+        footer_html = fd.read()
+    return footer_html
 
 
 def home(request, response):
