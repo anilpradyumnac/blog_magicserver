@@ -6,29 +6,26 @@ import time
 
 redis_server = redis.Redis('localhost')
 
+def check_redis_connection():
+    try:
+        if redis_server.ping():
+            return True
+    except redis.ConnectionError:
+        return False
 
 # Temporary HTML Generator functions
 def html_header():
-    html = '''\
-<html>
-<head>
-<title>Geekskool Blog</title>
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Playfair+Display:300,400,700' rel='stylesheet' type='text/css'>   
-<link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
-<body>
-      
-'''
-    return html
+    header_html = ''
+    with open('./views/header.html', 'r') as fd:
+        header_html = fd.read()
+    return header_html
 
 
 def html_tail():
-    html = '''\
-</body>
-</html>
-'''
-    return html
+    footer_html = ''
+    with open('./views/footer.html', 'r') as fd:
+        footer_html = fd.read()
+    return footer_html
 
 
 def home(request, response):
@@ -140,6 +137,10 @@ def build_routes():
 
 
 if __name__ == "__main__":
-    port = int(raw_input("PORT>"))
-    build_routes()
-    server.start_server("127.0.0.1", port, 20)
+    if check_redis_connection():
+        port = int(raw_input("PORT>"))
+        build_routes()
+        server.start_server("127.0.0.1", port, 20)
+    else:
+        print 'Redis server has not started, please start your redis server'
+        print 'Start the redis server by executing $python start_redis.py'
