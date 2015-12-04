@@ -6,6 +6,12 @@ import time
 
 redis_server = redis.Redis('localhost')
 
+def check_redis_connection():
+    try:
+        if redis_server.ping():
+            return True
+    except redis.ConnectionError:
+        return False
 
 # Temporary HTML Generator functions
 def html_header():
@@ -131,6 +137,10 @@ def build_routes():
 
 
 if __name__ == "__main__":
-    port = int(raw_input("PORT>"))
-    build_routes()
-    server.start_server("127.0.0.1", port, 20)
+    if check_redis_connection():
+        port = int(raw_input("PORT>"))
+        build_routes()
+        server.start_server("127.0.0.1", port, 20)
+    else:
+        print 'Redis server has not started, please start your redis server'
+        print 'Start the redis server by executing $python start_redis.py'
